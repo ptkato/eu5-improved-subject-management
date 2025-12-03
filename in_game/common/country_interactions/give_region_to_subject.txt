@@ -46,7 +46,7 @@ give_region_to_subject = {
 		source = actor
 		target_flag = target
 		name = "select_a_region_to_give"
-		none_available_msg_key = "give_province_to_subject_no_provinces"
+		none_available_msg_key = "give_region_to_subject_no_regions"
 		# Only show regions where there is at least one owned, non-capital
 		# location that either borders the subject or is in the same sub-continent
 		visible = {
@@ -84,7 +84,7 @@ give_region_to_subject = {
 			}
 		}
 		else = {
-			custom_tooltip = select_a_province_to_give
+			custom_tooltip = select_a_region_to_give
 		}
 	}
 	ai_will_do = {

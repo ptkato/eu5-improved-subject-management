@@ -1,0 +1,10 @@
+l_english:
+ give_region_to_subject: "Cede Region"
+ give_region_to_subject_act: "Cede Region to [SCOPE.sCountry('recipient').GetName]"
+ give_region_to_subject_desc: "We will give them all our locations in a region."
+ give_region_to_subject_effect_text: "[SCOPE.sCountry('actor').GetName] cede a region to [SCOPE.sCountry('recipient').GetName]"
+ give_region_to_subject_effect_text_past: "[SCOPE.sCountry('actor').GetName] ceded a region to [SCOPE.sCountry('recipient').GetName]"
+ PROPOSE_give_region_to_subject: "Cede Region to $RECIPIENT$?\n$INFO$."
+ select_a_region_to_give: "Click to select a region that we should cede to our subject."
+ no_valid_regions: "@trigger_no! No valid [regions|e] available"
+ give_region_to_subject_no_regions: "$no_valid_regions$"
