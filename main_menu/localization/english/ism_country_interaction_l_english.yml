@@ -1,4 +1,4 @@
-l_english:
+﻿l_english:
  give_region_to_subject: "Cede Region"
  give_region_to_subject_act: "Cede Region to [SCOPE.sCountry('recipient').GetName]"
  give_region_to_subject_desc: "We will give them all our locations in a region."
