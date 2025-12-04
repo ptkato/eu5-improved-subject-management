@@ -36,7 +36,7 @@
 			}
 			OR = {
 				is_colonial_subject = yes
-				scope:actor.at_war = no
+				scope:actor = { at_war = no }
 			}
 		}
         enabled = {
