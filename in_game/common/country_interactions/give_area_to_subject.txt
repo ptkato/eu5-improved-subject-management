@@ -55,7 +55,11 @@
 		# location that either borders the subject or is in the same sub-continent
 		visible = {
 			NOT = {
-				scope:actor.capital.area = scope:target
+				scope:actor = {
+					capital = {
+						area = scope:target
+					}
+				}
 			}
 			any_location_in_area = {
 				owner ?= scope:actor
