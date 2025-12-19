@@ -1,0 +1,8 @@
+﻿l_english:
+#  CANCEL_vassalTITLE: "test1"
+#  BREAK_vassalTITLE: "test2"
+ vassal_CATEGORY: "Unique Vassal Interactions"
+ vassalTITLE: "Cancel Vassal Status"
+
+ march_CATEGORY: "Unique March Interactions"
+ marchTITLE: "Declare March"
