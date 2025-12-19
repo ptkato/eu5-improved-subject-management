@@ -54,13 +54,6 @@
 		# Only show areas where there is at least one owned, non-capital
 		# location that either borders the subject or is in the same sub-continent
 		visible = {
-			NOT = {
-				scope:actor = {
-					capital = {
-						area = scope:target
-					}
-				}
-			}
 			any_location_in_area = {
 				owner ?= scope:actor
 				is_capital = no
