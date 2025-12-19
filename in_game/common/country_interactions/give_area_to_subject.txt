@@ -32,7 +32,7 @@
 				country_type = pop
 			}
 			OR = {
-				is_colonial_subject = yes
+				is_subject_type = colonial_nation
 				scope:actor = { at_war = no }
 			}
 		}

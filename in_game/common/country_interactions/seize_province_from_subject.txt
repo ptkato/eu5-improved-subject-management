@@ -25,7 +25,7 @@
 			data = name
 		}
 		visible = {
-			is_colonial_subject = yes
+			is_subject_type = colonial_nation
 			country_type = location
 		}
 		enabled = {

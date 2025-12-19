@@ -75,7 +75,9 @@
 		scope:recipient = {
 			if = {
 				limit = {
-					is_colonial_subject = no
+					NOT = {
+						is_subject_type = colonial_nation
+					}
 				}
 				add_liberty_desire = liberty_desire_severe_plus
 			}

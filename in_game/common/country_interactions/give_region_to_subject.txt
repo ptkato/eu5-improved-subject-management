@@ -31,7 +31,7 @@
 				country_type = building
 				country_type = pop
 			}
-			is_colonial_subject = yes
+			is_subject_type = colonial_nation
 		}
 		enabled = {
 			trigger_if = {
