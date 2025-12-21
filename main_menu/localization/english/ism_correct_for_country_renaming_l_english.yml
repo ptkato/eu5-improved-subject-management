@@ -27,10 +27,10 @@
  #########################################################
  # For Translators: You should not need to change anything below this line, but will still need to copy it to your localization file.
  # If you find that anything is not working as expected, make a comment on the workshop page and I will help you out.
- # These complex localization strings are to work around a bug in the game where all subject ineractions get mapped to the same key.
+ # These complex localization strings are to work around a bug in the game where all subject interactions get mapped to the same key.
  # Vassal
  vassal_CATEGORY: "CATEGORY_SUBJECT_ACTIONS"
- # If the nation is the subject of the palyer proceed to vassalTITLE, otherwise proceed to vassalTITLE_CREATION
+ # If the nation is the subject of the player proceed to vassalTITLE, otherwise proceed to vassalTITLE_CREATION
  vassalTITLE: "[SelectLocalization(DiplomaticActionItem.GetRecipient.GetDiplomacy.IsSubjectOf(GetPlayer), 'vassalTITLE_SUBJECT', 'vassalTITLE_CREATION')]"
  # SUBJECT: Check if the subject is a Vassal, if it is then it is the cancel Vassal interaction, otherwise its the switch to Vassal interaction
  vassalTITLE_SUBJECT: "[SelectLocalization(EqualTo_string(DiplomaticActionItem.GetRecipient.GetDiplomacy.GetSubjectType.GetNameWithNoTooltip, 'Vassal'), 'CANCEL_vassalTITLE', 'vassalTITLE_CHANGE')]"
