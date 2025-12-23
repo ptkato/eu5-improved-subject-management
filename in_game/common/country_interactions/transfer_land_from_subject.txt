@@ -1,0 +1,211 @@
+﻿transfer_land_from_subject = {
+	type = subject
+	category = CATEGORY_SUBJECT_ACTIONS
+	ai_tick = never
+	use_enroute = no
+	potential = {
+		scope:actor = {
+			country_type = location
+		}
+	}
+	allow = {
+	}
+	select_trigger = {
+		looking_for_a = country
+		interaction_source_list = {
+			scope:actor = {
+				every_subject = {
+					add_to_list = source
+				}
+			}
+		}
+		target_flag = recipient
+		name = "choose_country"
+		column = {
+			data = name
+		}
+		visible = {
+			country_type = location
+		}
+		enabled = {
+			subject_loyalty >= MIN_SUBJECT_LOYALTY_FOR_ACTION
+			liberty_desire < MAX_SUBJECT_LIBERTY_DESIRE_FOR_ACTION
+		}
+	}
+    select_trigger = {
+        looking_for_a = situation
+        interaction_source_list = {
+            situation:ism_transfer_mode_region   = { add_to_list = source }
+            situation:ism_transfer_mode_area     = { add_to_list = source }
+            situation:ism_transfer_mode_province = { add_to_list = source }
+            situation:ism_transfer_mode_location = { add_to_list = source }
+        }
+        target_flag = transfer_mode
+        name = "choose_transfer_mode"
+        column = { data = name }
+    }
+
+    select_trigger = {
+		looking_for_a = region
+		source = recipient
+		target_flag = target_region
+		name = "seize_region_from_subject_select_title"
+		none_available_msg_key = "seize_region_from_subject_no_regions"
+        show_if = {
+            scope:transfer_mode = { situation:ism_transfer_mode_region = this }
+        }
+		column = {
+			data = name
+		}
+		column = {
+			data = population
+		}
+		visible = {
+			any_location_in_region = {
+				owner ?= scope:recipient
+			}
+		}
+	}
+
+    select_trigger = {
+        looking_for_a = area
+        source = recipient
+        target_flag = target_area
+        name = "seize_area_from_subject_select_title"
+        none_available_msg_key = "seize_area_from_subject_no_areas"
+        show_if = {
+            scope:transfer_mode = { situation:ism_transfer_mode_area = this }
+        }
+        column = {
+            data = name
+        }
+        column = {
+            data = population
+        }
+        visible = {
+            any_location_in_area = {
+                owner ?= scope:recipient
+            }
+        }
+    }
+
+    select_trigger = {
+        looking_for_a = province
+        source = recipient
+        target_flag = target_province
+        name = "seize_province_from_subject_select_title"
+        none_available_msg_key = "seize_province_from_subject_no_provinces"
+        show_if = {
+            scope:transfer_mode = { situation:ism_transfer_mode_province = this }
+        }
+        column = {
+            data = name
+        }
+        column = {
+            data = population
+        }
+        visible = {
+        }
+    }
+
+    select_trigger = {
+        looking_for_a = location
+        source = recipient
+        target_flag = target_location
+        source_flags = only_actual_locations
+        name = "seize_location_from_subject_select_title"
+        none_available_msg_key = "seize_location_from_subject_no_locations"
+        show_if = {
+            scope:transfer_mode = { situation:ism_transfer_mode_location = this }
+        }
+        column = {
+            data = name
+        }
+        column = {
+            data = population
+        }
+        visible = {
+            any_coast_border_location = {
+                owner ?= scope:actor
+            }
+            is_capital = no
+        }
+    }
+
+	effect = {
+        if = {
+            limit = { scope:transfer_mode = { situation:ism_transfer_mode_region = this } }
+            if = {
+                limit = {
+                    exists = scope:target_region
+                }
+                scope:recipient = {
+                    every_owned_location = {
+                        limit = {
+                            region = scope:target_region
+                        }
+                        province = {
+                            change_province_owner = scope:actor
+                        }
+                    }
+                }
+            }
+            else = {
+                custom_tooltip = select_a_region_to_take
+            }
+        }
+        else_if = {
+            limit = { scope:transfer_mode = { situation:ism_transfer_mode_area = this } }
+            if = {
+                limit = {
+                    exists = scope:target_area
+                }
+                scope:recipient = {
+                    every_owned_location = {
+                        limit = {
+                            area = scope:target_area
+                        }
+                        province = {
+                            change_province_owner = scope:actor
+                        }
+                    }
+                }
+            }
+            else = {
+                custom_tooltip = select_a_area_to_take
+            }
+        }
+        else_if = {
+            limit = { scope:transfer_mode = { situation:ism_transfer_mode_province = this } }
+            if = {
+                limit = {
+                    exists = scope:target_province
+                }
+                scope:target_province = {
+                    change_province_owner = scope:actor
+                }
+            }
+            else = {
+                custom_tooltip = select_a_province_to_take
+            }
+        }
+        else_if = {
+            limit = { scope:transfer_mode = { situation:ism_transfer_mode_location = this } }
+            if = {
+                limit = {
+                    exists = scope:target_location
+                }
+                scope:target_location = {
+                    change_location_owner = scope:actor
+                }
+
+            }
+            else = {
+                custom_tooltip = select_a_location_to_take
+            }
+        }
+        else = {
+            custom_tooltip = select_a_location_to_take
+        }
+	}
+}
