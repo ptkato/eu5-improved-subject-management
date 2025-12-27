@@ -1,25 +1,26 @@
-﻿transfer_land_from_subject = {
+﻿transfer_land_to_subject = {
     type = subject
     category = CATEGORY_SUBJECT_ACTIONS
     ai_tick = never
     use_enroute = no
 
+    potential = {
+        scope:actor = { country_type = location }
+    }
+
     select_trigger = {
-        allow_self = yes
         looking_for_a = country
-        # this is actually the giver, but must be named recipient due to game limitations
         target_flag = recipient
-        name = select_country_to_transfer_land_from
+        name = select_country_to_transfer_land_to
 
         interaction_source_list = {
             scope:actor = {
-                every_subject_or_below = { add_to_list = source }
+                every_subject = { add_to_list = source }
                 add_to_list = source
             }
         }
 
         column = { data = name }
-
         visible = {
             # Is a land owning country
             NOR = {
@@ -27,23 +28,12 @@
                 country_type = pop
             }
         }
-        enabled = {
-            # subject is loyal
-            OR = {
-                # To prevent error log spam
-                is_subject = no
-                AND = {
-                    subject_loyalty >= MIN_SUBJECT_LOYALTY_FOR_ACTION
-                    liberty_desire < MAX_SUBJECT_LIBERTY_DESIRE_FOR_ACTION
-                }
-            }
-        }
     }
 
     select_trigger = {
         allow_self = yes
         looking_for_a = country
-        target_flag = receiver
+        target_flag = giver
         name = select_country_to_transfer_land_to
         interaction_source_list = {
             scope:actor = {
@@ -64,19 +54,14 @@
             }
         }
         enabled = {
-            # Cannot take land from non-colonial subjects
-            OR = {
-                NOT = { scope:actor = this }
-                scope:recipient = { is_subject_type = colonial_nation }
-            }
             OR = {
                 # Can always transfer from colonial nations
-                scope:recipient = { is_subject_type = colonial_nation }
+                is_colonial_subject = yes
                 # Cannot transfer land from a nation to a nation if they are not in the same war
-                scope:recipient = { at_war = no }
+                at_war = no
                 AND = {
-                    scope:recipient = { at_war = yes}
                     at_war = yes
+                    scope:recipient = { at_war = yes}
                 }
             }
         }
@@ -88,10 +73,10 @@
         name = select_transfer_mode
 
         interaction_source_list = {
-            situation:ism_transfer_mode_region   = { add_to_list = source }
-            situation:ism_transfer_mode_area     = { add_to_list = source }
-            situation:ism_transfer_mode_province = { add_to_list = source }
             situation:ism_transfer_mode_location = { add_to_list = source }
+            situation:ism_transfer_mode_province = { add_to_list = source }
+            situation:ism_transfer_mode_area     = { add_to_list = source }
+            situation:ism_transfer_mode_region   = { add_to_list = source }
         }
 
         column = { data = name }
@@ -99,73 +84,93 @@
 
     select_trigger = {
         looking_for_a = location
-        source = recipient
+        source = giver
         target_flag = target_location
         source_flags = only_actual_locations
-        name = "seize_location_from_subject_select_title"
-        none_available_msg_key = "seize_location_from_subject_no_locations"
+        name = "grant_location_to_subject_select_title"
+        none_available_msg_key = "grant_location_no_locations"
 
         show_if = {
             exists = scope:transfer_mode
             scope:transfer_mode = situation:ism_transfer_mode_location
         }
         column = { data = name }
-        column = { data = population }
+
+        visible = {
+            NOT = {
+                scope:actor.capital = this
+            }
+        }
     }
 
     select_trigger = {
         looking_for_a = province
-        source = recipient
+        source = giver
         target_flag = target_province
-        name = "seize_province_from_subject_select_title"
-        none_available_msg_key = "seize_province_from_subject_no_provinces"
+        name = "grant_province_to_subject_select_title"
+        none_available_msg_key = "grant_province_no_provinces"
 
         show_if = {
             exists = scope:transfer_mode
             scope:transfer_mode = situation:ism_transfer_mode_province
         }
         column = { data = name }
-        column = { data = population }
+        visible = {
+            NOT = {
+                scope:actor.capital.province = this
+            }
+        }
     }
 
     select_trigger = {
         looking_for_a = area
-        source = recipient
+        source = giver
         target_flag = target_area
-        name = "seize_area_from_subject_select_title"
-        none_available_msg_key = "seize_area_from_subject_no_areas"
+        name = "grant_area_to_subject_select_title"
+        none_available_msg_key = "grant_area_no_areas"
 
         show_if = {
             exists = scope:transfer_mode
             scope:transfer_mode = situation:ism_transfer_mode_area
         }
         column = { data = name }
-        column = { data = population }
 
-        visible = {
-            any_location_in_area = { owner ?= scope:recipient }
+        enabled = {
+            NAND = {
+                scope:actor = { scope:giver = this }
+                scope:actor.capital.area = this
+            }
         }
     }
 
     select_trigger = {
         looking_for_a = region
-        source = recipient
+        source = giver
         target_flag = target_region
-        name = "seize_region_from_subject_select_title"
-        none_available_msg_key = "seize_region_from_subject_no_regions"
+        name = "grant_region_to_subject_select_title"
+        none_available_msg_key = "grant_region_no_regions"
 
         show_if = {
             exists = scope:transfer_mode
             scope:transfer_mode = situation:ism_transfer_mode_region
         }
         column = { data = name }
-        column = { data = population }
+
+        visible = {
+            NOR = {
+                scope:actor ?= scope:giver
+                scope:actor.capital.region = this
+            }
+            any_location_in_region = {
+                owner ?= scope:giver
+            }
+        }
     }
 
     effect = {
         ism_perform_land_transfer = {
-            giver = scope:recipient
-            receiver = scope:receiver
+            giver = scope:giver
+            receiver = scope:recipient
         }
     }
 }
