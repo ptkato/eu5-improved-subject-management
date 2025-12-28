@@ -1,4 +1,4 @@
-# common/situations/ism_transfer_modes.txt
+﻿# common/situations/ism_transfer_modes.txt
 
 ism_transfer_mode_region = {
     monthly_spawn_chance = 0
