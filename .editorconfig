@@ -4,5 +4,5 @@ root = true
 end_of_line = lf
 charset = utf-8
 
-[*.yml]
+[{*.yml,*.txt}]
 charset = utf-8-bom

@@ -1,4 +1,4 @@
-# Executes the land transfer based on the selected transfer_mode
+﻿# Executes the land transfer based on the selected transfer_mode
 # Checks for region, area, province, or location modes and transfers ownership accordingly
 # ROOT: country interaction
 # ARGS: giver; receiver
