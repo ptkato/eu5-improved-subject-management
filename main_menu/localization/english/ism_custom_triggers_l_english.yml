@@ -1,2 +1,3 @@
 ﻿l_english:
+ no_valid_regions: "@trigger_no! No valid [regions|e] available"
  cannot_transfer_capital: "You cannot give away your capital."

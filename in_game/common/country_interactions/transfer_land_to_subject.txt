@@ -56,7 +56,7 @@
         enabled = {
             OR = {
                 # Can always transfer from colonial nations
-                is_colonial_subject = yes
+                subject_type = subject_type:colonial_nation
                 # Cannot transfer land from a nation to a nation if they are not in the same war
                 at_war = no
                 AND = {
@@ -97,8 +97,11 @@
         column = { data = name }
 
         enabled = {
-            NOT = {
-                scope:actor.capital = this
+            custom_tooltip = {
+                text = cannot_transfer_capital
+                NOT = {
+                    scope:actor.capital = this
+                }
             }
         }
     }
@@ -116,8 +119,11 @@
         }
         column = { data = name }
         enabled = {
-            NOT = {
-                scope:actor.capital.province = this
+            custom_tooltip = {
+                text = cannot_transfer_capital
+                NOT = {
+                    scope:actor.capital.province = this
+                }
             }
         }
     }
@@ -142,9 +148,12 @@
         }
 
         enabled = {
-            NAND = {
-                scope:actor = { scope:giver = this }
-                scope:actor.capital.area = this
+            custom_tooltip = {
+                text = cannot_transfer_capital
+                NAND = {
+                    scope:actor = { scope:giver = this }
+                    scope:actor.capital.area = this
+                }
             }
         }
     }
@@ -171,7 +180,7 @@
         enabled = {
             custom_tooltip = {
                 text = cannot_transfer_capital
-                NOR = {
+                NAND = {
                     scope:actor ?= scope:giver
                     scope:actor.capital.region = this
                 }
