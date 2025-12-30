@@ -129,6 +129,7 @@
 			}
 			
 			ContextMenuEntry = {
+                # CHANGED: Allow renaming any subject except tributary
 				visible = "[And3(Country.GetDiplomacy.GetTopOverlord.IsValid, EqualTo_string(GetPlayer.GetTag, Country.GetDiplomacy.GetTopOverlord.GetTag), Not(EqualTo_string(Country.GetDiplomacy.GetSubjectType.GetNameKey, 'tributary')))]"
 			
 				blockoverride "click_action" {
