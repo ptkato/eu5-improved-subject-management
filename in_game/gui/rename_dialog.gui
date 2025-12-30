@@ -41,6 +41,7 @@ window = {
 							margin = {5 0}
 							using = message_text_box_background		
 							visible = yes
+
 							editbox_single = {
 								size = { 300 30 }
 
@@ -80,11 +81,12 @@ window = {
 					margin = { 0 10 }
 					spacing = 50
 
-                    text_single = {
-                        raw_text = "DEBUG: '[GetVariableSystem.Get('renaming_new_name')]'"
-                        align = center
-                        default_format = "#low"
-                    }
+                    # MODIFICATION: Debug Text
+                    # text_single = {
+                    #     raw_text = "DEBUG: 'PLAYER: [GetPlayer.GetTag] TARGET: [RenameDialog.GetCountry.GetDiplomacy.GetTopOverlord.IsValid]' TRIBUTARY: [EqualTo_string(RenameDialog.GetCountry.GetDiplomacy.GetSubjectType.GetNameKey, 'tributary')] ISEQUAL: [And3(RenameDialog.GetCountry.GetDiplomacy.GetTopOverlord.IsValid, EqualTo_string(GetPlayer.GetTag, RenameDialog.GetCountry.GetDiplomacy.GetTopOverlordOrThis.GetTag), Not(EqualTo_string(RenameDialog.GetCountry.GetDiplomacy.GetSubjectType.GetNameKey, 'tributary')))]"
+                    #     align = center
+                    #     default_format = "#low"
+                    # }
 					block "message_template_buttons" {
 						button_regular_diamond = {
 							name = "decline_button"
@@ -129,9 +131,7 @@ window = {
                             # MODIFICATION: Bypass C++ Check
                             # 1. Execute the rename command using the Country Tag and the text Variable
                             onclick = "[ExecuteConsoleCommand( Concatenate( 'effect c:', Concatenate( RenameDialog.GetCountry.GetTag, Concatenate( ' = { change_country_name = \"', Concatenate( GetVariableSystem.Get('renaming_new_name'), '\" }' ) ) ) ) )]"
-
                             # 2. Close the window
-                            # We use OnDecline because OnAccept will fail the validation check and keep the window open.
                             onclick = "[DialogConfig.OnDecline]"
 
                             input_action = "confirm"
