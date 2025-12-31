@@ -9,6 +9,7 @@
     }
 
     select_trigger = {
+        allow_self = yes
         looking_for_a = country
         target_flag = recipient
         name = select_country_to_transfer_land_to
