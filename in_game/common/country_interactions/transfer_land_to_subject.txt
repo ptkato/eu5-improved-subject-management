@@ -61,7 +61,7 @@
                 # Cannot transfer land from a nation to a nation if they are not in the same war
                 custom_tooltip = {
                     text = "is_in_same_war"
-                    or = {
+                    OR = {
                         at_war = no
                         AND = {
                             at_war = yes
