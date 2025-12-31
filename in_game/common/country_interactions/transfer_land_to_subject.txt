@@ -9,6 +9,7 @@
     }
 
     select_trigger = {
+        allow_self = yes
         looking_for_a = country
         target_flag = recipient
         name = select_country_to_transfer_land_to
@@ -60,10 +61,12 @@
                 # Cannot transfer land from a nation to a nation if they are not in the same war
                 custom_tooltip = {
                     text = "is_in_same_war"
-                    at_war = no
-                    AND = {
-                        at_war = yes
-                        scope:recipient = { at_war = yes }
+                    or = {
+                        at_war = no
+                        AND = {
+                            at_war = yes
+                            scope:recipient = { at_war = yes }
+                        }
                     }
                 }
             }

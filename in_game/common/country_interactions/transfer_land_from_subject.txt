@@ -75,10 +75,12 @@
                 # Cannot transfer land from a nation to a nation if they are not in the same war
                 custom_tooltip = {
                     text = "is_in_same_war"
-                    scope:recipient = { at_war = no }
-                    AND = {
-                        scope:recipient = { at_war = yes}
-                        at_war = yes
+                    OR = {
+                        scope:recipient = { at_war = no }
+                        AND = {
+                            scope:recipient = { at_war = yes }
+                            at_war = yes
+                        }
                     }
                 }
             }
