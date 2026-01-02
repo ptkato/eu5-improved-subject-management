@@ -1,8 +1,4 @@
 root = true
 
-[prepare-release.sh]
-end_of_line = lf
-charset = utf-8
-
-[{*.yml,*.txt}]
+[*.{txt,yml,gui}]
 charset = utf-8-bom
