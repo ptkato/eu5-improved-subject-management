@@ -1,11 +1,18 @@
 ﻿{
-  "name" : "Improved Subject Management Dev",
-  "id" : "improved.subject.management.dev",
-  "version" : "1.2.5",
-  "game_id" : "eu5",
-  "supported_game_version" : "1.0.*",
-  "short_description" : "Improved Subject Management Dev",
-  "tags" : [ "Utilities", "Diplomacy", "Gameplay", "User Interface", "Fixes", "Overhaul" ],
-  "relationships" : [ ],
-  "game_custom_data" : { }
+  "name": "Improved Subject Management Dev",
+  "id": "improved.subject.management.dev",
+  "version": "1.2.5",
+  "game_id": "eu5",
+  "supported_game_version": "1.0.*",
+  "short_description": "Adds and modifies various subject interactions to significantly improve subject management.",
+  "tags": [
+    "Utilities",
+    "Diplomacy",
+    "Gameplay",
+    "User Interface",
+    "Fixes",
+    "Overhaul"
+  ],
+  "relationships": [],
+  "game_custom_data": {}
 }
