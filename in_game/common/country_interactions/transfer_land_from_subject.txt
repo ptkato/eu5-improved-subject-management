@@ -43,7 +43,7 @@
     select_trigger = {
         allow_self = yes
         looking_for_a = country
-        target_flag = receiver
+        target_flag = real_receiver
         name = select_country_to_transfer_land_to
         interaction_source_list = {
             scope:actor = {
@@ -170,7 +170,7 @@
     effect = {
         ism_perform_land_transfer = {
             giver = scope:recipient
-            receiver = scope:receiver
+            receiver = scope:real_receiver
         }
     }
 }
