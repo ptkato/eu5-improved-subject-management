@@ -1,0 +1,6 @@
+prevented_from_changing_liturgical_language_by_overlord={
+	boolean=yes
+	game_data={
+		category=country
+	}
+}
