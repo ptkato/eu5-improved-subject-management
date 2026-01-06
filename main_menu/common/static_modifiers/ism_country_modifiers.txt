@@ -4,5 +4,5 @@ forced_us_to_use_their_liturgical_language = {
 		decaying = yes
 	}
 	loyalty_to_overlord = -15
-	prevented_from_changing_liturgical_language_by_overlord = yes
+    change_liturgical_language_cost_modifier = 10
 }

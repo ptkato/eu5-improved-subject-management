@@ -52,9 +52,6 @@
 
  # Change Subject Liturgical Language
  STATIC_MODIFIER_NAME_forced_us_to_use_their_liturgical_language: "Forced us to use their $game_concept_liturgical_language$"
- MODIFIER_TYPE_NAME_prevented_from_changing_liturgical_language_by_overlord: "Prevented from Changing Liturgical Language by Overlord"
- MODIFIER_TYPE_DESC_prevented_from_changing_liturgical_language_by_overlord: "The [overlord|e] has imposed a [liturgical_language|e] on the [subject|e], preventing them changing it back for a time."
- force_change_liturgical_language: "Force to Change Liturgical Language"
  change_subject_liturgical_language: "Change Liturgical Language"
  change_subject_liturgical_language_act: "Change Liturgical Language in [SCOPE.sCountry('recipient').GetName]"
  change_subject_liturgical_language_desc: "We will demand that they adopt our [liturgical_language|e]!"
